@@ -5,10 +5,18 @@ import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaRegUser, FaPhoneAlt } from "react-icons/fa";
-
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  // function handel registe
+  const route = useRouter();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    route.push("/onbording");
+  };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-900">
@@ -20,7 +28,7 @@ export default function Login() {
           <span className="text-white">KA</span>
         </h1>
 
-        <div className="space-y-4">
+        <form onSubmit={handleRegister} className="space-y-4">
           {/* Input Email */}
           <div className="relative flex justify-center items-center">
             <Input className="py-6" placeholder="Nama Lengkap" />
@@ -60,13 +68,13 @@ export default function Login() {
           <Button variant="default" className="w-full mt-4" size="lg">
             Daftar
           </Button>
-        </div>
+        </form>
 
         {/* Daftar */}
         <p className="text-sm text-gray-400 mt-6 text-center">
-          Belum punya akun ?{" "}
+          Sudah punya akun ?{" "}
           <a href="#" className="text-green-500 hover:underline">
-            Daftar
+            Login
           </a>
         </p>
       </div>

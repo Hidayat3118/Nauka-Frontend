@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const CardLogaritma = ({ name }) => {
   return (
-    <div className="bg-slate-800 rounded-xl hover:-translate-2 duration-300">
+    <div className="bg-slate-800 rounded-xl hover:-translate-2 duration-300 ">
       <div className="rounded-xl p-4 ">
         <Image
           src="/people/study.jpg"

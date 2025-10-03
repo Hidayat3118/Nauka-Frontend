@@ -36,10 +36,10 @@ const Navbar = () => {
         {/* Icons */}
         <div className="flex items-center space-x-6 text-white text-xl">
           {/* Notif */}
-          <div className="bg-slate-800 h-12 w-12 rounded-full flex justify-center">
+          <div className="bg-slate-800 h-12 w-12 rounded-full flex justify-center hover:text-green-400">
             <Tooltip>
               <TooltipTrigger>
-                <FaBell className="cursor-pointer hover:text-green-400" />
+                <FaBell className="cursor-pointer " />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Notifikasi</p>
