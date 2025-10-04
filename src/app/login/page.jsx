@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useState } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
@@ -30,7 +30,7 @@ export default function Login() {
             <Input
               type={showPassword ? "text" : "password"}
               placeholder="Kata Sandi"
-              className="py-6"
+              className="py-6" 
             />
             <button
               type="button"
@@ -48,18 +48,19 @@ export default function Login() {
         </div>
 
         {/* Lupa password */}
-        <p className="text-base text-gray-400 mt-3 text-center cursor-pointer hover:underline">
+        <p className="text-sm lg:text-base text-gray-400 mt-3 text-center cursor-pointer hover:underline hover:text-green-400">
           Lupa kata sandi?
         </p>
 
         {/* Daftar */}
-        <p className="text-sm text-gray-400 mt-6 text-center">
+        <p className="text-sm lg:text-base text-gray-400 mt-6 text-center">
           Belum punya akun ?{" "}
-          <a href="#" className="text-green-500 hover:underline">
+          <Link href="register" className="text-green-500 hover:underline">
             Daftar
-          </a>
+          </Link>
         </p>
       </div>
+      
     </div>
   );
 }

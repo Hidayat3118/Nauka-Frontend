@@ -1,6 +1,31 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Scrollbar Custom */
+.scrollbar-custom::-webkit-scrollbar {
+  height: 6px; /* tinggi scrollbar horizontal */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent; /* background track */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #253D2C;  /* warna hijau (Tailwind green-400) */
+  border-radius: 9999px; /* bikin bulat */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #2E6F40; /* warna hijau lebih gelap saat hover */
+}
+
+/* Firefox */
+.scrollbar-custom {
+  scrollbar-color: #253D2C transparent; 
+  scrollbar-width: thin;
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

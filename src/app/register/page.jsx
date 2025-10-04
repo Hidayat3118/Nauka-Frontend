@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useState } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
@@ -71,11 +71,11 @@ export default function Login() {
         </form>
 
         {/* Daftar */}
-        <p className="text-sm text-gray-400 mt-6 text-center">
+        <p className="text-sm lg:text-base text-gray-400 mt-6 text-center">
           Sudah punya akun ?{" "}
-          <a href="#" className="text-green-500 hover:underline">
+          <Link href="/login" className="text-green-500 hover:underline">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>

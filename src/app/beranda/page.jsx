@@ -1,3 +1,4 @@
+'use client'
 import Card from "@/components/ui/card";
 import AvatarPengajar from "@/components/ui/avatarPengajar";
 import CardLogaritma from "@/components/ui/cardLogaritma";
@@ -7,7 +8,7 @@ import LayoutKedua from "../layoutKedua";
 const Beranda = () => {
   return (
     <LayoutKedua>
-      <div className="min-h-screen flex flex-col items-center bg-slate-900 px-6">
+      <div className="min-h-screen flex flex-col items-center bg-slate-900 px-6 ">
         {/* section Card */}
         <section className="max-w-6xl w-full grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-44 ">
           <Card
@@ -25,64 +26,66 @@ const Beranda = () => {
         </section>
 
         {/* section Pengajar */}
-        <section className="mt-16">
-          <div className="flex ">
-            <h1 className="text-2xl text-white font-bold mb-10">Pengajar</h1>
+        <section className="mt-10 max-w-6xl w-full">
+          <div className="flex justify-between">
+            <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">Pengajar</h1>
             <div className="text-lg hover:text-green-400 text-white mb-10 font-semibold hover:-translate-1 duration-300 flex items-center justify-center gap-2">
-              <a href="" className="">
+              <a href="" className="text-sm">
                 lihat Lainnya
               </a>
-              <FaLongArrowAltRight />
+              <FaLongArrowAltRight className="text-base"/>
             </div>
           </div>
 
-          <div className="flex gap-6">
+          <div className="flex overflow-x-auto scrollbar-custom gap-6 pb-6 ">
+            <AvatarPengajar name={"alif"} />
+            <AvatarPengajar name={"husein"} />
+            <AvatarPengajar name={"alif"} />
             <AvatarPengajar name={"husein"} />
             <AvatarPengajar name={"alif"} />
             <AvatarPengajar name={"azhar"} />
-            <AvatarPengajar name={"azhar"} />
-            <AvatarPengajar name={"Baha"} />
-            <AvatarPengajar name={"azhar"} />
+         
+            
           </div>
         </section>
 
         {/* card vedio terpopuler */}
-        <section className="mt-24">
+        <section className="mt-8 lg:mt-24 max-w-6xl w-full">
           <div className="flex justify-between">
-            <h1 className="text-2xl text-white font-bold mb-10">
+            <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
               Vedio Terpopuler
             </h1>
             <div className="text-lg hover:text-green-400 text-white mb-10 font-semibold hover:-translate-1 duration-300 flex items-center justify-center gap-2">
-              <a href="" className="">
+              <a href="" className="text-sm">
                 lihat Lainnya
               </a>
-              <FaLongArrowAltRight />
+              <FaLongArrowAltRight className="text-base"/>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-8">
-            <CardLogaritma name={"Baha"} />
-            <CardLogaritma name={"Baha"} />
-            <CardLogaritma name={"Baha"} />
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide sm:flex-wrap lg:grid lg:grid-cols-3 lg:gap-6 pb-6">
+            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
+            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
+            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
           </div>
         </section>
 
         {/* card Buku terpopuler */}
-        <section className="my-28 ">
+        <section className="mt-8 lg:mt-24  max-w-6xl w-full">
           <div className="flex justify-between">
-            <h1 className="text-2xl text-white font-bold mb-10">
+            <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
               Buku Terpopuler
             </h1>
             <div className="text-lg hover:text-green-400 text-white mb-10 font-semibold hover:-translate-1 duration-300 flex items-center justify-center gap-2">
-              <a href="" className="">
+              <a href="" className="text-sm">
                 lihat Lainnya
               </a>
-              <FaLongArrowAltRight />
+              <FaLongArrowAltRight className="text-base"/>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-8">
-            <CardLogaritma name={"Baha"} />
-            <CardLogaritma name={"Baha"} />
-            <CardLogaritma name={"Baha"} />
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide sm:flex-wrap lg:grid lg:grid-cols-3 lg:gap-6 pb-6">
+            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
+            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
+            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
           </div>
         </section>
       </div>
