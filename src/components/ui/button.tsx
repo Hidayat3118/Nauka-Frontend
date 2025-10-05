@@ -13,9 +13,9 @@ const buttonVariants = cva(
         destructive:
           "bg-green-900 text-gray-500 cursor-pointer",
         outline:
-          "py-3 border border-green-600  font-semibold text-green-600 cursor-pointer hover:text-white hover:bg-green-600",
+          "border border-green-600 font-semibold text-green-600 cursor-pointer hover:text-white hover:bg-green-600",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-green-700 text-white cursor-pointer",
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",

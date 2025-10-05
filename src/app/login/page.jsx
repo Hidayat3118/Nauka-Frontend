@@ -4,9 +4,39 @@ import { useState } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { login } from "@/api/loginApi";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  // data api
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  // variabel useRoute
+  const route = useRouter();
+  // function handle login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await login(username, password);
+      setMessage("Login berhasil!");
+      console.log("Response:", data);
+      if (data.token) localStorage.setItem("token", data.token);
+      toast.success("Selamat Login Berhasil");
+      route.push("/beranda");
+    } catch (error) {
+      if (error.response) {
+        setMessage(error.response.data.message || "Login gagal");
+      } else if (error.request) {
+        setMessage("Tidak ada respons dari server");
+      } else {
+        setMessage("Terjadi kesalahan saat login");
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-900">
@@ -18,10 +48,16 @@ export default function Login() {
           <span className="text-white">KA</span>
         </h1>
 
-        <div className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
           {/* Input Email */}
           <div className="relative flex justify-center items-center">
-            <Input className="py-6" placeholder="Alamat Email" />
+            <Input
+              type="text"
+              className="py-6"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
             <FaEnvelope className="absolute right-3 text-gray-400" />
           </div>
 
@@ -30,7 +66,9 @@ export default function Login() {
             <Input
               type={showPassword ? "text" : "password"}
               placeholder="Kata Sandi"
-              className="py-6" 
+              className="py-6"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button
               type="button"
@@ -42,25 +80,28 @@ export default function Login() {
           </div>
 
           {/* Tombol Masuk */}
-          <Button variant="default" className="w-full mt-4" size="lg">
+          <Button
+            type="submit"
+            variant="default"
+            className="w-full mt-4"
+            size="lg"
+          >
             Masuk
           </Button>
-        </div>
+        </form>
 
         {/* Lupa password */}
         <p className="text-sm lg:text-base text-gray-400 mt-3 text-center cursor-pointer hover:underline hover:text-green-400">
           Lupa kata sandi?
         </p>
-
         {/* Daftar */}
         <p className="text-sm lg:text-base text-gray-400 mt-6 text-center">
           Belum punya akun ?{" "}
-          <Link href="register" className="text-green-500 hover:underline">
+          <Link href="/register" className="text-green-500 hover:underline">
             Daftar
           </Link>
         </p>
       </div>
-      
     </div>
   );
 }

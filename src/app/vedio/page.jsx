@@ -31,7 +31,7 @@ const Vedio = () => {
         </section>
 
         {/* pagination */}
-        <Pagination className="text-white mt-12">
+        <Pagination className="text-white">
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious href="#" />

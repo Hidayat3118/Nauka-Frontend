@@ -1,5 +1,11 @@
-const Card = ({ name, className }) => {
-  return <div className={className}>{name}</div>;
+import Link from "next/link";
+
+const Card = ({ name, className, href }) => {
+  return (
+    <Link className={className} href={href}>
+      {name}
+    </Link>
+  );
 };
 
 export default Card;

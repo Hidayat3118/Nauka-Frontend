@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Step1Role = ({ onNext }) => {
+  const [role, setRole] = useState("");
   // function kembali
   const route = useRouter();
   const kembali = async (e) => {
@@ -23,19 +25,30 @@ const Step1Role = ({ onNext }) => {
 
       <div className="space-y-4">
         {/* murid */}
-        <Button className="w-full font-bold" variant="outline" size="lg">
+        <Button
+          className="w-full font-bold"
+          variant={role == "murid" ? "secondary" : "outline"}
+          size="lg"
+          onClick={() => setRole("murid")}
+        >
           Murid
         </Button>
         {/* Pengajar */}
-        <Button className="w-full font-bold" variant="outline" size="lg">
+        <Button
+          className="w-full font-bold"
+          variant={role == "pengajar" ? "secondary" : "outline"}
+          size="lg"
+          onClick={() => setRole("pengajar")}
+        >
           Pengajar
         </Button>
       </div>
       {/* Button Lanjutkan */}
       <Button
-        onClick={onNext}
+        onClick={() => onNext(role)}
+        disabled={!role}
         className="w-full font-bold mt-6"
-        variant="destructive"
+        variant={role ? "default" :  'destructive'}
         size="lg"
       >
         Lanjutkan

@@ -2,7 +2,7 @@ import Navbar from "@/components/ui/navbar";
 const LayoutKedua = ({ children }) => {
   return (
     <main className="">
-      {/* <Navbar /> */}
+      <Navbar />
       {children}
     </main>
   );

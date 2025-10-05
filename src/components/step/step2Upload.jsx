@@ -42,8 +42,9 @@ const Step2Upload = ({ onNext, kembali }) => {
 
       <Button
         onClick={() => onNext(file)}
-        variant="destructive"
-        className="w-full mt-6 font-bold"
+        disabled={!file}
+        className="w-full font-bold mt-6"
+        variant={file ? "default" : "destructive"}
         size="lg"
       >
         Lanjutkan
