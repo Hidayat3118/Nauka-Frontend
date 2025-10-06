@@ -21,12 +21,12 @@ const Vedio = () => {
         {/* card vedio terpopuler */}
         <section className="mt-8 lg:mt-14 max-w-6xl w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <CardMateri nameMateri={"Aljabar"} />
-            <CardMateri nameMateri={"Penalaran"} />
-            <CardMateri nameMateri={"Penalaran"} />
-            <CardMateri nameMateri={"Penalaran"} />
-            <CardMateri nameMateri={"Penalaran"} />
-            <CardMateri nameMateri={"Penalaran"} />
+            <CardMateri namePengajar={"Azhar"} nameMateri={"Aljabar"} />
+            <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
+            <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
+            <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
+            <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
+            <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
           </div>
         </section>
 

@@ -21,7 +21,7 @@ const Beranda = () => {
             className="bg-yellow-500 hover:bg-yellow-600 rounded-xl p-6 md:p-10 text-center text-white font-semibold text-xl cursor-pointer hover:-translate-y-2  duration-300"
           />
           <Card
-            name={"Soal Tryout"} href="/materi"
+            name={"Soal Tryout"} href="/"
             className="bg-purple-500 hover:bg-purple-600 rounded-xl p-6 md:p-10 text-center text-white font-semibold text-xl cursor-pointer hover:-translate-y-2  duration-300 col-span-2 md:col-span-1"
           />
         </section>
@@ -44,9 +44,7 @@ const Beranda = () => {
             <AvatarPengajar name={"alif"} />
             <AvatarPengajar name={"husein"} />
             <AvatarPengajar name={"alif"} />
-            <AvatarPengajar name={"azhar"} />
-         
-            
+            <AvatarPengajar name={"azhar"} />    
           </div>
         </section>
 
@@ -63,30 +61,30 @@ const Beranda = () => {
               <FaLongArrowAltRight className="text-base"/>
             </div>
           </div>
-          <div className="flex gap-4 overflow-x-auto scrollbar-hide sm:flex-wrap lg:grid lg:grid-cols-3 lg:gap-6 pb-6">
-            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
-            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
-            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 pb-6">
+            <CardLogaritma name={"Baha"} />
+            <CardLogaritma name={"Baha"} />
+            <CardLogaritma name={"Baha"} />
           </div>
         </section>
 
-        {/* card Buku terpopuler */}
+        {/* card Materi terpopuler */}
         <section className="mt-8 lg:mt-24  max-w-6xl w-full">
           <div className="flex justify-between">
             <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
-              Buku Terpopuler
+              Materi Terpopuler
             </h1>
             <div className="text-lg hover:text-green-400 text-white mb-10 font-semibold hover:-translate-1 duration-300 flex items-center justify-center gap-2">
-              <Link href="/buku" className="text-sm">
+              <Link href="/materi" className="text-sm">
                 lihat Lainnya
               </Link>
               <FaLongArrowAltRight className="text-base"/>
             </div>
           </div>
-          <div className="flex gap-4 overflow-x-auto scrollbar-hide sm:flex-wrap lg:grid lg:grid-cols-3 lg:gap-6 pb-6">
-            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
-            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
-            <CardLogaritma name={"Baha"} className="md:w-full rounded-xl"/>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 pb-6">
+            <CardLogaritma name={"Baha"} />
+            <CardLogaritma name={"Baha"} />
+            <CardLogaritma name={"Baha"} />
           </div>
         </section>
       </div>
