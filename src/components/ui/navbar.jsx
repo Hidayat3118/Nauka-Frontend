@@ -2,12 +2,13 @@
 import { FaUser, FaBell, FaBookmark } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import Image from "next/image";
+import { logout } from "@/api/logoutApi";
+import toast from "react-hot-toast";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -18,8 +19,27 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
+  // function handleLogout
+  const handleLogout = async () => {
+    try {
+      const response = await logout();
+
+      // Hapus token di localStorage
+      await localStorage.removeItem("token");
+      if (response) {
+        toast.success("Logout berhasil");
+      } 
+      router.push("/login");
+
+    } catch (error) {
+      toast.error("Terjadi kesalahan saat logout");
+    }
+  };
+
   return (
     <nav className="fixed top-0 lg:top-4 left-0 right-0 z-50">
       <div className="max-w-5xl mx-auto px-6 flex justify-between items-center md:border-2 md:border-gray-700  py-6 lg:rounded-full shadow-xl bg-slate-900">
@@ -36,7 +56,7 @@ const Navbar = () => {
         {/* Icons */}
         <div className="flex items-center space-x-2 lg:space-x-4 text-white text-lg lg:text-xl">
           {/* Notif */}
-          <div className="bg-slate-800 h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center hover:text-green-400">
+          <div className="bg-slate-800  h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center hover:text-green-400">
             <Tooltip>
               <TooltipTrigger>
                 <FaBell className="cursor-pointer " />
@@ -47,7 +67,7 @@ const Navbar = () => {
             </Tooltip>
           </div>
           {/* simpan */}
-          <div className="bg-slate-800 h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center ">
+          <div className="bg-slate-800  h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center ">
             <Tooltip>
               <TooltipTrigger>
                 <FaBookmark className="cursor-pointer hover:text-green-400" />
@@ -70,7 +90,7 @@ const Navbar = () => {
                       alt="people"
                       width={200}
                       height={200}
-                      className="object-cover overflow-hidden h-12 w-12 rounded-full border-2 lg:border-4 border-green-500"
+                      className="object-cover overflow-hidden h-12 w-12 rounded-full border lg:border-2 border-green-500"
                     />
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="">
@@ -83,7 +103,10 @@ const Navbar = () => {
                     </NavigationMenuLink>
                     <NavigationMenuLink>
                       {" "}
-                      <button className="flex items-center gap-1 md:gap-2 md:px-2 w-full rounded-md hover:bg-gray-100">
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center gap-1 md:gap-2 md:px-2 w-full rounded-md hover:bg-gray-100"
+                      >
                         <FiLogOut className="text-red-500" />
                         <span>Logout</span>
                       </button>

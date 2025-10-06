@@ -22,10 +22,9 @@ export default function Login() {
 
     try {
       const data = await login(username, password);
-      setMessage("Login berhasil!");
+      toast.success("Selamat Login Berhasil");
       console.log("Response:", data);
       if (data.token) localStorage.setItem("token", data.token);
-      toast.success("Selamat Login Berhasil");
       route.push("/beranda");
     } catch (error) {
       if (error.response) {
@@ -33,7 +32,7 @@ export default function Login() {
       } else if (error.request) {
         setMessage("Tidak ada respons dari server");
       } else {
-        setMessage("Terjadi kesalahan saat login");
+        setMessage("username dan sandi tidak sesuai");
       }
     }
   };
@@ -49,6 +48,7 @@ export default function Login() {
         </h1>
 
         <form onSubmit={handleLogin} className="space-y-4">
+          <p className="text-red-500 font-semibold">{message}</p>
           {/* Input Email */}
           <div className="relative flex justify-center items-center">
             <Input

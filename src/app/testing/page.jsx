@@ -1,43 +1,46 @@
-"use client";
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
-const Testing = () => {
-  const notifikasi = () => {
-    toast.success("Testing Berhasil");
-  };
-
+export default function Testing() {
   return (
-    <div className="flex justify-center ">
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent">
-                <Image
-                      src="/people/people.jpeg"
-                      alt="people"
-                      width={200}
-                      height={200}
-                      className="object-cover overflow-hidden h-12 w-12 rounded-full border-2 lg:border-4 border-green-500"
-                    />
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <NavigationMenuLink>Link</NavigationMenuLink>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-    </div>
-  );
-};
-
-export default Testing;
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you&apos;re done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid flex-1 auto-rows-min gap-6 px-4">
+          <div className="grid gap-3">
+           
+            <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
+          </div>
+          <div className="grid gap-3">
+           
+            <Input id="sheet-demo-username" defaultValue="@peduarte" />
+          </div>
+        </div>
+        <SheetFooter>
+          <Button type="submit" className="py-4">Save changes</Button>
+          <SheetClose asChild>
+            <Button variant="outline">Close</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  )
+}
