@@ -67,7 +67,7 @@ const Navbar = () => {
             </Tooltip>
           </div>
           {/* simpan */}
-          <div className="bg-[#2A2A2A] h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center ">
+          {/* <div className="bg-[#2A2A2A] h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center ">
             <Tooltip>
               <TooltipTrigger>
                 <FaBookmark className="cursor-pointer hover:text-green-400" />
@@ -76,7 +76,7 @@ const Navbar = () => {
                 <p>Di Simpan</p>
               </TooltipContent>
             </Tooltip>
-          </div>
+          </div> */}
 
           {/* Profil */}
           <div className="">
