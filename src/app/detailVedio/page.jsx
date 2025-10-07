@@ -56,7 +56,7 @@ const DetailVedio = () => {
             </div>
             {/* suka */}
             <div className="flex items-center gap-2">
-              <AiFillLike size={22} className="text-blue-400" />
+              <AiFillLike size={22} className="text-white hover:text-blue-400 hover:-translate-1 cursor-pointer duration-300" />
               <span>128 suka</span>
             </div>
           </div>

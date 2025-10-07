@@ -2,6 +2,7 @@
 import CardMateri from "@/components/ui/cardMateri";
 import LayoutKedua from "../layoutKedua";
 import Search from "@/components/ui/search";
+import { getMateri } from "@/api/materiApi";
 import {
   Pagination,
   PaginationContent,
@@ -12,10 +13,38 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import ButtonBack from "@/components/ui/buttonBack";
-const Vedio = () => {
+import { useEffect, useState } from "react";
+import LoadingSpinner from "@/components/ui/loading";
+const Materi = () => {
+  const [materi, setMateri] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = setTimeout(async () => {
+      try {
+        const data = await getMateri();
+        setMateri(data);
+      } catch (error) {
+        console.error("terjadi kesalahan di halaman materi", error);
+      } finally {
+        setLoading(false);
+      }
+    }, 1000);
+    return () => clearTimeout(fetchData);
+    
+  }, []);
+
+  if (loading)
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-primary px-6">
+        {" "}
+        <LoadingSpinner />
+      </div>
+    );
+
   return (
     <LayoutKedua>
-      <div className="min-h-screen flex flex-col items-center bg-primary px-6 ">
+      <div className="min-h-screen flex flex-col items-center bg-primary px-6">
         <div className="max-w-5xl">
           {/* <ButtonBack back="/vedio" /> */}
           {/* Serch vedio */}
@@ -23,12 +52,15 @@ const Vedio = () => {
           {/* card vedio terpopuler */}
           <section className="mt-8 lg:mt-14 w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <CardMateri namePengajar={"Azhar"} nameMateri={"Aljabar"} />
-              <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
-              <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
-              <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
-              <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
-              <CardMateri namePengajar={"Azhar"} nameMateri={"Penalaran"} />
+              {materi.map((data) => (
+                <CardMateri
+                  key={data.id}
+                  title={data.title}
+                  description={data.description}
+                  image={data.image}
+                  user={data.user}
+                />
+              ))}
             </div>
           </section>
 
@@ -63,4 +95,4 @@ const Vedio = () => {
   );
 };
 
-export default Vedio;
+export default Materi;

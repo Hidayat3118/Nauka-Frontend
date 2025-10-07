@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "nauka.vps-poliban.my.id",
+        port: "",
+        pathname: "/storage/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

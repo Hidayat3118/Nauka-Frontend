@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AiFillLike } from "react-icons/ai";
 import { FaPlay } from "react-icons/fa";
+import { AiOutlineLike } from "react-icons/ai";
 const CardVedio = ({ nameVedio, namePengajar }) => {
   const likeCount = 128;
   return (
@@ -31,7 +31,7 @@ const CardVedio = ({ nameVedio, namePengajar }) => {
           {nameVedio}
         </h2>
         <div className="flex items-center gap-1 text-slate-300 hover:text-blue-400 transition-colors duration-300 cursor-pointer">
-          <AiFillLike size={22} />
+          <AiOutlineLike size={22} />
           <span className="text-sm">{likeCount}</span>
         </div>
       </div>
