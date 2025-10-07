@@ -13,9 +13,9 @@ const Step1Role = ({ onNext }) => {
   };
 
   return (
-    <div className="max-w-lg w-full mx-auto p-6 lg:bg-gray-800 text-white rounded-xl shadow-lg mt-6">
+    <div className="max-w-lg w-full mx-auto p-6 md:bg-[#2A2A2A]  text-white rounded-xl shadow-lg mt-6">
       <div
-        className="rounded-full md:bg-gray-700 bg-gray-800 w-12 h-12 flex justify-center items-center mb-8 cursor-pointer"
+        className="rounded-full  bg-[#2A2A2A] w-12 h-12 flex justify-center items-center mb-8 cursor-pointer"
         onClick={kembali}
       >
         <FaArrowLeft className="text-xl" />

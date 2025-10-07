@@ -4,7 +4,7 @@ import { AiFillLike } from "react-icons/ai";
 const CardMateri = ({ nameMateri, namePengajar }) => {
   const likeCount = 123;
   return (
-    <div className="bg-slate-800 rounded-xl hover:-translate-y-2 duration-300 shrink-0 lg:min-w-0">
+    <div className="bg-[#2A2A2A] rounded-xl hover:-translate-y-2 duration-300 shrink-0 lg:min-w-0 cursor-pointer">
       <div className="p-3 flex flex-row items-center gap-3 md:flex-col md:items-start">
         {/* Gambar */}
         <Image
@@ -12,7 +12,7 @@ const CardMateri = ({ nameMateri, namePengajar }) => {
           alt="study"
           width={250}
           height={300}
-          className="w-24 h-24  md:w-full md:h-auto rounded-xl object-cover"
+          className="w-32 h-32 md:w-full md:h-auto rounded-xl object-cover"
         />
 
         {/* Konten */}
@@ -31,7 +31,7 @@ const CardMateri = ({ nameMateri, namePengajar }) => {
             Pelajari konsep logaritma dengan mudah melalui
           </p>
 
-          <div className="flex items-center gap-3 pt-3 border-t border-slate-700">
+          <div className="flex items-center gap-3 pt-3 border-t border-gray-600">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>

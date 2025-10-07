@@ -12,7 +12,7 @@ export default function OnboardingPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen w-full flex lg:items-center justify-center bg-slate-900">
+    <div className="min-h-screen w-full flex lg:items-center justify-center bg-primary">
       {step === 1 && (
         <Step1Role
           onNext={(selectedRole) => {

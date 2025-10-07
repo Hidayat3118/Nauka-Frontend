@@ -5,7 +5,7 @@ import { AiFillLike } from "react-icons/ai";
 const CardLogaritma = ({ name }) => {
   const likeCount = 123;
   return (
-    <div className="bg-slate-800 rounded-xl hover:-translate-1 cursor-pointer duration-300 shrink-0 lg:min-w-0 ">
+    <div className="bg-[#2A2A2A] rounded-xl hover:-translate-1 cursor-pointer duration-300 shrink-0 lg:min-w-0 ">
       <div className="rounded-xl p-3 ">
         <Image
           src="/people/study.jpg"

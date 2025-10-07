@@ -26,6 +26,15 @@
 }
 
 
+/* warna */
+
+.primary{
+  background:#262626;
+}
+.secondary{
+  background:#2A2A2A;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

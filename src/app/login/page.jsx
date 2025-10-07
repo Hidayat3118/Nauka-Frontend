@@ -38,7 +38,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900">
+    <div className="min-h-screen flex items-center justify-center bg-primary">
       <div className="max-w-lg w-full p-6 rounded-xl space-y-8">
         {/* Logo */}
         <h1 className="text-4xl font-bold text-center mb-20">

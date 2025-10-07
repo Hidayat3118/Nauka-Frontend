@@ -4,7 +4,7 @@ const Search = ({placeholder}) => {
   return (
     <div className="relative flex items-center mt-32 max-w-6xl w-full  lg:mt-44">
       <Input
-        className="lg:w-sm bg-gray-800 py-6 lg:py-6 rounded-full pl-12 lg:pl-14 text-base lg:text-xl"
+        className="lg:w-sm bg-[#2A2A2A] py-6 lg:py-6 rounded-full pl-12 lg:pl-14 text-base lg:text-xl"
         placeholder={placeholder}
       />
       <IoSearch className="text-white text-2xl lg:text-3xl font-bold absolute left-3  " />

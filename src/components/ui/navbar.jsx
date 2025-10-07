@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 lg:top-4 left-0 right-0 z-50">
-      <div className="max-w-5xl mx-auto px-6 flex justify-between items-center md:border-2 md:border-gray-700  py-6 lg:rounded-full shadow-xl bg-slate-900">
+      <div className="max-w-4xl mx-auto px-6 flex justify-between items-center md:border-2 md:border-[#2A2A2A]  py-6 lg:rounded-full shadow-xl bg-primary">
         {/* Logo */}
         <div>
           <h1 className="text-xl lg:text-2xl font-bold text-center">
@@ -56,7 +56,7 @@ const Navbar = () => {
         {/* Icons */}
         <div className="flex items-center space-x-2 lg:space-x-4 text-white text-lg lg:text-xl">
           {/* Notif */}
-          <div className="bg-slate-800  h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center hover:text-green-400">
+          <div className="bg-[#2A2A2A] h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center hover:text-green-400">
             <Tooltip>
               <TooltipTrigger>
                 <FaBell className="cursor-pointer " />
@@ -67,7 +67,7 @@ const Navbar = () => {
             </Tooltip>
           </div>
           {/* simpan */}
-          <div className="bg-slate-800  h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center ">
+          <div className="bg-[#2A2A2A] h-10 w-10 lg:h-12 lg:w-12 rounded-full flex justify-center ">
             <Tooltip>
               <TooltipTrigger>
                 <FaBookmark className="cursor-pointer hover:text-green-400" />

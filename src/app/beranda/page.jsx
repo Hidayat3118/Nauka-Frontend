@@ -9,9 +9,9 @@ import Link from "next/link";
 const Beranda = () => {
   return (
     <LayoutKedua>
-      <div className="min-h-screen flex flex-col items-center bg-slate-900 px-6">
+      <div className="min-h-screen flex flex-col items-center bg-primary px-6">
         {/* section Card */}
-        <section className="max-w-6xl w-full grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-32 lg:mt-44">
+        <section className="max-w-5xl w-full grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-32 lg:mt-44">
           <Card
             name={"Materi"} href="/materi"
             className="bg-green-500 hover:bg-green-500 rounded-xl p-6 md:p-10 text-center text-white font-semibold text-xl cursor-pointer hover:-translate-y-2  duration-300"
@@ -27,7 +27,7 @@ const Beranda = () => {
         </section>
 
         {/* section Pengajar */}
-        <section className="mt-10 max-w-6xl w-full">
+        <section className="mt-10 max-w-5xl w-full">
           <div className="flex justify-between">
             <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">Pengajar</h1>
             <div className="text-lg hover:text-green-400 text-white mb-10 font-semibold hover:-translate-1 duration-300 flex items-center justify-center gap-2">
@@ -49,7 +49,7 @@ const Beranda = () => {
         </section>
 
         {/* card vedio terpopuler */}
-        <section className="mt-8 lg:mt-24 max-w-6xl w-full">
+        <section className="mt-8 lg:mt-24 max-w-5xl w-full">
           <div className="flex justify-between">
             <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
               Vedio Terpopuler
@@ -69,7 +69,7 @@ const Beranda = () => {
         </section>
 
         {/* card Materi terpopuler */}
-        <section className="mt-8 lg:mt-24  max-w-6xl w-full">
+        <section className="mt-8 lg:mt-24  max-w-5xl w-full">
           <div className="flex justify-between">
             <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
               Materi Terpopuler
