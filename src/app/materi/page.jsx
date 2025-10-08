@@ -31,16 +31,9 @@ const Materi = () => {
       }
     }, 1000);
     return () => clearTimeout(fetchData);
-    
   }, []);
 
-  if (loading)
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-primary px-6">
-        {" "}
-        <LoadingSpinner />
-      </div>
-    );
+  if (loading) return <LoadingSpinner />;
 
   return (
     <LayoutKedua>

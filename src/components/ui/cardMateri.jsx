@@ -25,7 +25,7 @@ const CardMateri = ({ title, description, image, user, materialId, initialLikes 
             <ButtonLike
               materialId={materialId}
               initialLikes={initialLikes}
-              initiallyLiked={true}
+              initiallyLiked={false}
             />
           </div>
 

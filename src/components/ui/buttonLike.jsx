@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { toggleLike } from "@/api/materi/likeMateri";
@@ -7,6 +7,14 @@ import { toggleLike } from "@/api/materi/likeMateri";
 export default function ButtonLike({ materialId, initialLikes, initiallyLiked }) {
   const [likes, setLikes] = useState(initialLikes);
   const [liked, setLiked] = useState(initiallyLiked);
+
+  useEffect(() => {
+    // Cek apakah user sudah like dari localStorage
+    const likedMaterials = JSON.parse(localStorage.getItem("likedMaterials") || "[]");
+    if (likedMaterials.includes(materialId)) {
+      setLiked(true);
+    }
+  }, [materialId]);
 
   const handleLike = async () => {
     const token = localStorage.getItem("token");
@@ -20,12 +28,17 @@ export default function ButtonLike({ materialId, initialLikes, initiallyLiked })
       const message = res.message;
       const newLikes = res.data.likes;
 
+      let likedMaterials = JSON.parse(localStorage.getItem("likedMaterials") || "[]");
+
       if (message === "Material liked") {
         setLiked(true);
+        likedMaterials.push(materialId);
       } else if (message === "Material unliked") {
         setLiked(false);
+        likedMaterials = likedMaterials.filter((id) => id !== materialId);
       }
 
+      localStorage.setItem("likedMaterials", JSON.stringify(likedMaterials));
       setLikes(newLikes);
       toast.success(message);
     } catch (error) {
@@ -40,7 +53,7 @@ export default function ButtonLike({ materialId, initialLikes, initiallyLiked })
       className="flex items-center gap-1 transition-transform hover:scale-105 text-white"
     >
       {liked ? (
-        <AiFillLike className="text-green-500" size={22} />
+        <AiFillLike className="text-blue-600" size={22} />
       ) : (
         <AiOutlineLike size={22} />
       )}
