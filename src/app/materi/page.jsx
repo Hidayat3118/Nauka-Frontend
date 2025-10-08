@@ -2,7 +2,7 @@
 import CardMateri from "@/components/ui/cardMateri";
 import LayoutKedua from "../layoutKedua";
 import Search from "@/components/ui/search";
-import { getMateri } from "@/api/materiApi";
+import { getMateri } from "@/api/materi/materiApi";
 import {
   Pagination,
   PaginationContent,
@@ -59,6 +59,8 @@ const Materi = () => {
                   description={data.description}
                   image={data.image}
                   user={data.user}
+                  materialId={data.id}
+                  initialLikes={data.likes}
                 />
               ))}
             </div>

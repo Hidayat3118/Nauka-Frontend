@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AiOutlineLike } from "react-icons/ai";
-const CardMateri = ({ title, description, likes, image, user }) => {
- 
+import ButtonLike from "./buttonLike";
+const CardMateri = ({ title, description, image, user, materialId, initialLikes }) => {
   return (
     <div className="bg-[#2A2A2A] rounded-xl hover:-translate-y-2 duration-300 shrink-0 lg:min-w-0 cursor-pointer">
       <div className="p-3 flex flex-row items-center gap-3 md:flex-col md:items-start">
@@ -21,10 +21,12 @@ const CardMateri = ({ title, description, likes, image, user }) => {
             <h2 className="text-white font-semibold text-lg lg:text-xl line-clamp-1">
               {title}
             </h2>
-            <div className="flex items-center gap-1 text-slate-300 hover:text-blue-400 transition-colors duration-300 cursor-pointer">
-              <AiOutlineLike size={22} />
-              <span className="text-sm">{likes}</span>
-            </div>
+            {/* like */}
+            <ButtonLike
+              materialId={materialId}
+              initialLikes={initialLikes}
+              initiallyLiked={true}
+            />
           </div>
 
           <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
@@ -36,7 +38,9 @@ const CardMateri = ({ title, description, likes, image, user }) => {
               <AvatarImage src={user?.photo_profile} />
               <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
             </Avatar>
-            <p className="text-white font-medium line-clamp-1">{user?.name}</p>
+            <p className="text-white font-medium line-clamp-1 text-sm md:text-base">
+              {user?.name}
+            </p>
           </div>
         </div>
       </div>
