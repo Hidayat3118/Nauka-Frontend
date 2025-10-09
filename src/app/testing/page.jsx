@@ -66,7 +66,7 @@ export default function ProfileSheet() {
               <AiOutlineClockCircle size={20} />
               <span>Riwayat Ujian</span>
             </button>
-            {/* logout */}
+{/* logout */}
             <button className="flex items-center gap-3 px-4 py-2 w-full rounded-md hover:bg-gray-700 transition">
               <FiLogOut size={20} className="text-red-500" />
               <span>Riwayat Ujian</span>
@@ -88,4 +88,15 @@ export default function ProfileSheet() {
   );
 }
 
-
+// Reusable Button Componentz
+function ProfileButton({ icon, children, onClick, className }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex items-center gap-3 px-4 py-2 w-full rounded-md hover:bg-gray-700 transition ${className}`}
+    >
+      {icon}
+      <span>{children}</span>
+    </button>
+  );
+}
