@@ -83,7 +83,7 @@ export default function MaterialDetail() {
         {/* Tombol kembali */}
         <button
           onClick={() => window.history.back()}
-          className="rounded-full bg-[#2A2A2A] hover:bg-gray-700 w-12 h-12 flex justify-center items-center mb-8 cursor-pointer transition-colors duration-300"
+          className="rounded-full bg-[#2A2A2A] hover:bg-gray-700 w-12 md:w-14 md:h-14 h-12 flex justify-center items-center mb-8 cursor-pointer transition-colors duration-300"
         >
           <FaArrowLeft />
         </button>
