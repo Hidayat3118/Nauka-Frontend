@@ -6,6 +6,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaRegUser, FaPhoneAlt } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +25,6 @@ export default function Login() {
     e.preventDefault();
     route.push("/onbording");
   };
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-primary">
@@ -34,7 +42,19 @@ export default function Login() {
             <Input className="py-6" placeholder="Nama Lengkap" />
             <FaRegUser className="absolute right-3 text-gray-400" />
           </div>
-
+          {/* role */}
+          <Select >
+            <SelectTrigger className="w-full py-7 border-0 text-gray-400 bg-[#2A2A2A]">
+              <SelectValue placeholder="Pilih Role" />
+            </SelectTrigger >
+            <SelectContent >
+              <SelectGroup>
+                <SelectLabel>Role</SelectLabel>
+                <SelectItem value="apple">Murid</SelectItem>
+                <SelectItem value="banana">Pengajar</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
           {/* No Telepon */}
           <div className="relative flex justify-center items-center">
             <Input className="py-6" placeholder="No Telepon" />

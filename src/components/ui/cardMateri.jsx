@@ -1,13 +1,23 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AiOutlineLike } from "react-icons/ai";
 import ButtonLike from "./buttonLike";
-const CardMateri = ({ title, description, image, user, materialId, initialLikes }) => {
+const CardMateri = ({
+  title,
+  description,
+  image,
+  user,
+  materialId,
+  initialLikes,
+}) => {
+  const router = useRouter();
   return (
     <div className="bg-[#2A2A2A] rounded-xl hover:-translate-y-2 duration-300 shrink-0 lg:min-w-0 cursor-pointer">
       <div className="p-3 flex flex-row items-center gap-3 md:flex-col md:items-start">
         {/* Gambar */}
         <Image
+          onClick={() => router.push(`/materi/${materialId}`)}
           src={image}
           alt="study"
           width={250}

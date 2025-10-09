@@ -155,6 +155,7 @@ const Navbar = () => {
                   <Input
                     id="profile-email"
                     type="email"
+                    readOnly
                     value={profile.email || ""}
                     onChange={(e) => setProfile({ ...profile, email: e.target.value })}
                   />
@@ -168,7 +169,7 @@ const Navbar = () => {
                     type="text"
                     value={profile.role || ""}
                     readOnly
-                    className="cursor-default bg-gray-700/30 capitalize"
+                    className="cursor-default  capitalize"
                   />
                 </div>
 
