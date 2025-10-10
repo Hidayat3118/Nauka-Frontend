@@ -1,32 +1,15 @@
 "use client";
 
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 import {
-  FaBars,
   FaUserGraduate,
   FaBookOpen,
   FaRegHeart,
   FaUsers,
-  FaBell,
-  FaCog,
-  FaSignOutAlt,
-  FaHome,
-  FaChartBar,
   FaArrowUp,
-  FaChalkboardTeacher,
 } from "react-icons/fa";
-import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { IoMdAnalytics } from "react-icons/io";
 import { BsGraphUp } from "react-icons/bs";
 import { useState } from "react";
@@ -42,7 +25,7 @@ export default function DashboardPage() {
      
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <main className="flex-1  grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {/* LEFT COLUMN - Stats */}
         <section className="lg:col-span-2 space-y-6">
           {/* Stats Cards */}
