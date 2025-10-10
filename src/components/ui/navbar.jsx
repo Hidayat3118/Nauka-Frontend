@@ -1,7 +1,6 @@
 "use client";
 import { FaBell } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import { AiOutlineClockCircle } from "react-icons/ai";
 import { logout } from "@/api/logoutApi";
 import { getUserProfile } from "@/api/user/profilApi";
 import { updateUserProfile } from "@/api/user/updateApi";
