@@ -24,7 +24,7 @@ const Vedio = () => {
             <FaArrowLeft />
           </button>
           {/* Serch vedio */}
-          <Search placeholder="Cari vedio pembelajaran ..." />
+          <Search placeholder="Cari video pembelajaran ..." />
 
           {/* card vedio */}
           <section className="mt-8 lg:mt-14 ">

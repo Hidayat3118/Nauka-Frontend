@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Card = ({ name, className, href }) => {
+const CardWarna = ({ name, className, href }) => {
   return (
     <Link className={className} href={href}>
       {name}
@@ -8,4 +8,4 @@ const Card = ({ name, className, href }) => {
   );
 };
 
-export default Card;
+export default CardWarna;

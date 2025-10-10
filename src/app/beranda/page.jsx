@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/components/ui/card";
+import CardWarna from "@/components/ui/cardWarna";
 import AvatarPengajar from "@/components/ui/avatarPengajar";
 import CardLogaritma from "@/components/ui/cardLogaritma";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -34,17 +34,17 @@ const Beranda = () => {
       <div className="min-h-screen flex flex-col items-center bg-primary px-6">
         {/* section Card */}
         <section className="max-w-5xl w-full grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-32 lg:mt-44">
-          <Card
+          <CardWarna
             name={"Materi"}
             href="/materi"
             className="bg-green-500 hover:bg-green-500 rounded-xl p-6 md:p-10 text-center text-white font-semibold text-xl cursor-pointer hover:-translate-y-2  duration-300"
           />
-          <Card
+          <CardWarna
             name={"Video"}
             href="/vedio"
             className="bg-yellow-500 hover:bg-yellow-600 rounded-xl p-6 md:p-10 text-center text-white font-semibold text-xl cursor-pointer hover:-translate-y-2  duration-300"
           />
-          <Card
+          <CardWarna
             name={"Soal Tryout"}
             href="/"
             className="bg-purple-500 hover:bg-purple-600 rounded-xl p-6 md:p-10 text-center text-white font-semibold text-xl cursor-pointer hover:-translate-y-2  duration-300 col-span-2 md:col-span-1"
