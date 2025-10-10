@@ -142,7 +142,7 @@ const Navbar = () => {
           {/* Avatar + Edit Profile */}
 
           {!token ? (
-            <Button onClick={() => router.push("/login")} variant={"outline"} className="md:py-5 md:px-6 md:text-lg">login</Button>
+            <Button onClick={() => router.push("/")} variant={"outline"} className="md:py-5 md:px-6 md:text-lg">login</Button>
           ) : (
             <Sheet>
               <SheetTrigger asChild>

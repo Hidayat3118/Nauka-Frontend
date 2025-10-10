@@ -75,11 +75,11 @@ const Beranda = () => {
           </div>
         </section>
 
-        {/* card materi terpopuler */}
+        {/* card materi Terbaru */}
         <section className="mt-8 lg:mt-24 max-w-5xl w-full">
           <div className="flex justify-between">
             <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
-              Materi Terpopuler
+              Materi Terbaru
             </h1>
             <div className="text-lg hover:text-green-400 text-white mb-10 font-semibold hover:-translate-1 duration-300 flex items-center justify-center gap-2">
               <Link href="/materi" className="text-sm">
