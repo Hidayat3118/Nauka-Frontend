@@ -13,7 +13,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import ButtonBack from "@/components/ui/buttonBack";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "@/components/ui/loading";
 const Materi = () => {
@@ -30,7 +29,7 @@ const Materi = () => {
       } finally {
         setLoading(false);
       }
-    }, 1000);
+    }, 500);
     return () => clearTimeout(fetchData);
   }, []);
 

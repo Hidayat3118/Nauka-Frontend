@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import LoadingSpinner from "@/components/ui/loading";
 import {
   FaArrowLeft,
   FaFilePdf,
   FaFlag,
-  FaQuestionCircle,
   FaCheckCircle,
   FaTimesCircle,
 } from "react-icons/fa";
@@ -17,14 +17,14 @@ import { RiQuestionFill } from "react-icons/ri";
 export default function MaterialDetail() {
   const { id } = useParams();
 
-  // 🔹 Semua state yang dibutuhkan
+  // Semua state yang dibutuhkan
   const [material, setMaterial] = useState(null);
-  const [questions, setQuestions] = useState([]); // <-- penting!
+  const [questions, setQuestions] = useState([]); 
   const [selectedOptions, setSelectedOptions] = useState({});
   const [results, setResults] = useState({});
   const [error, setError] = useState("");
-
-  // 🔹 Ambil data materi
+  const [loading, setLoading] = useState(true);
+  // Ambil data materi
   useEffect(() => {
     if (!id) return;
     const fetchMaterial = async () => {
@@ -35,12 +35,14 @@ export default function MaterialDetail() {
         setMaterial(res.data.data);
       } catch (err) {
         console.error("Gagal ambil data:", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMaterial();
   }, [id]);
 
-  // 🔹 Ambil data pertanyaan (soal)
+  // Ambil data pertanyaan
   useEffect(() => {
     const fetchQuestions = async () => {
       const token = localStorage.getItem("token");
@@ -55,7 +57,9 @@ export default function MaterialDetail() {
         setQuestions(data);
       } catch (err) {
         if (err.response?.status === 401) {
-          setError("Token tidak valid atau sudah expired. Silakan login ulang.");
+          setError(
+            "Token tidak valid atau sudah expired. Silakan login ulang."
+          );
         } else {
           setError("Gagal memuat soal.");
         }
@@ -65,7 +69,7 @@ export default function MaterialDetail() {
     fetchQuestions();
   }, [id]);
 
-  // 🔹 Saat user pilih opsi
+  // Saat user pilih opsi
   const handleSelect = (questionId, option) => {
     setSelectedOptions((prev) => ({ ...prev, [questionId]: option.id }));
     setResults((prev) => ({
@@ -73,6 +77,8 @@ export default function MaterialDetail() {
       [questionId]: option.is_correct ? "benar" : "salah",
     }));
   };
+
+  if (loading) return <LoadingSpinner />;
 
   if (!material)
     return <p className="text-center text-white mt-10">Memuat materi...</p>;

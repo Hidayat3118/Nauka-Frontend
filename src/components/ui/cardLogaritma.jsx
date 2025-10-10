@@ -1,45 +1,56 @@
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AiFillLike } from "react-icons/ai";
-
-const CardLogaritma = ({ name }) => {
-  const likeCount = 123;
+import { useRouter } from "next/navigation";
+import ButtonLike from "./buttonLike";
+const CardLogaritma = ({
+  title,
+  description,
+  image,
+  user,
+  materialId,
+  initialLikes,
+}) => {
+  const router = useRouter();
+  // 🔹 Gambar utama: pastikan tidak kosong
+ 
   return (
     <div className="bg-[#2A2A2A] rounded-xl hover:-translate-1 cursor-pointer duration-300 shrink-0 lg:min-w-0 ">
       <div className="rounded-xl p-3 ">
         <Image
-          src="/people/study.jpg"
-          alt="study"
+          onClick={() => router.push(`/materi/${materialId}`)}
+          src={image}
           width={250}
           height={300}
-          className="w-full rounded-xl"
+          alt="belajar"
+          className="w-full rounded-xl object-cover h-44"
         />
 
         <div className="p-3 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-white font-semibold text-xl lg:text-2xl">
-              Logaritma
+            <h2 className="text-white font-semibold text-lg lg:text-xl line-clamp-1">
+              {title}
             </h2>
-            <div className="flex items-center gap-1 text-slate-300 hover:text-blue-400 transition-colors duration-300 cursor-pointer">
-              <AiFillLike size={22} />
-              <span className="text-sm">{likeCount}</span>
+            <div className="pl-4">
+              <ButtonLike className=""
+              materialId={materialId}
+              initialLikes={initialLikes}
+              initiallyLiked={false}
+            />
             </div>
           </div>
 
-          <p className="text-slate-300 text-sm leading-relaxed">
-            Pelajari konsep logaritma dengan mudah melalui contoh dan latihan
-            soal yang menarik.
+          <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+            {description}
           </p>
 
           <div className="flex items-center gap-3 pt-3 border-t border-slate-700">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={user?.photo_profile} />
+              <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
             </Avatar>
-            <p className="text-white font-medium">{name}</p>
+            <p className="text-white font-medium">{user?.name}</p>
           </div>
         </div>
-
       </div>
     </div>
   );

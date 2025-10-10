@@ -59,7 +59,7 @@ const Navbar = () => {
       const response = await logout();
       localStorage.removeItem("token");
       if (response) toast.success("Logout berhasil");
-      router.push("/login");
+      router.push("/");
     } catch (error) {
       toast.error("Terjadi kesalahan saat logout");
     }
@@ -241,10 +241,10 @@ const Navbar = () => {
 
                 {/* Menu Tambahan */}
                 <div className="mt-6 px-4 flex flex-col gap-3">
-                  <button className="flex items-center gap-3 px-4 py-2 w-full rounded-md hover:bg-gray-700 transition">
+                  {/* <button className="flex items-center gap-3 px-4 py-2 w-full rounded-md hover:bg-gray-700 transition">
                     <AiOutlineClockCircle size={20} />
                     <span>Riwayat Ujian</span>
-                  </button>
+                  </button> */}
                   <button
                     onClick={handleLogout}
                     className="flex items-center gap-3 px-4 py-2 w-full rounded-md hover:bg-gray-700 transition"
