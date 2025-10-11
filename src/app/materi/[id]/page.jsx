@@ -80,8 +80,6 @@ export default function MaterialDetail() {
 
   if (loading) return <LoadingSpinner />;
 
-  if (!material)
-    return <p className="text-center text-white mt-10">Memuat materi...</p>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-neutral-900 to-black text-white flex flex-col">

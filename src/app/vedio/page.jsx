@@ -2,6 +2,7 @@
 import CardVedio from "@/components/ui/cardVedio";
 import LayoutKedua from "../layoutKedua";
 import Search from "@/components/ui/search";
+import ButtonBack from "@/components/ui/buttonBack";
 import {
   Pagination,
   PaginationContent,
@@ -12,29 +13,49 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { FaArrowLeft } from "react-icons/fa";
+import { getVideos } from "@/api/video/getVideoApi";
+import { useState, useEffect } from "react";
+import LoadingSpinner from "@/components/ui/loading"
 const Vedio = () => {
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // tampilkan data api
+  useEffect(() => {
+    const fetchData = setTimeout(async () => {
+      try {
+        const data = await getVideos();
+        setVideos(data);
+      } catch (error) {
+        console.error("terjadi kesalahan di halaman materi", error);
+      } finally {
+        setLoading(false);
+      }
+    }, 500);
+    return () => clearTimeout(fetchData);
+  }, []);
+
+  if (loading) return <LoadingSpinner />;
+
   return (
     <LayoutKedua>
       <div className="min-h-screen flex flex-col items-center bg-primary px-6 ">
-        <div className="max-w-5xl w-fullmax-w-5xl mt-28 w-full md:mt-44">
-          <button
-            onClick={() => window.history.back()}
-            className="rounded-full md:hidden bg-[#2A2A2A] text-white hover:bg-gray-700 w-12 md:w-14 md:h-14 h-12 flex justify-center items-center mb-8 cursor-pointer transition-colors duration-300"
-          >
-            <FaArrowLeft />
-          </button>
+        <div className="max-w-5xl w-full mt-28  md:mt-44">
+           <ButtonBack back="/beranda" />
           {/* Serch vedio */}
           <Search placeholder="Cari video pembelajaran ..." />
 
           {/* card vedio */}
           <section className="mt-8 lg:mt-14 ">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <CardVedio nameVedio={"Linier"} namePengajar={"Baha"} />
-              <CardVedio nameVedio={"Linier"} namePengajar={"Baha"} />
-              <CardVedio nameVedio={"Linier"} namePengajar={"Baha"} />
-              <CardVedio nameVedio={"Linier"} namePengajar={"Baha"} />
-              <CardVedio nameVedio={"Linier"} namePengajar={"Baha"} />
-              <CardVedio nameVedio={"Linier"} namePengajar={"Baha"} />
+              {videos.map((data) => (
+                <CardVedio
+                  key={data.id}
+                  title={data.title}
+                  description={data.description}
+                  user={data.user}
+                  vedioId={data.id}
+                />
+              ))}
             </div>
           </section>
 

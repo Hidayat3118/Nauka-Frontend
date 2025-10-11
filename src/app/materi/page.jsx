@@ -4,6 +4,7 @@ import LayoutKedua from "../layoutKedua";
 import Search from "@/components/ui/search";
 import { getMateri } from "@/api/materi/materiApi";
 import { FaArrowLeft } from "react-icons/fa";
+import ButtonBack from "@/components/ui/buttonBack";
 import {
   Pagination,
   PaginationContent,
@@ -18,7 +19,7 @@ import LoadingSpinner from "@/components/ui/loading";
 const Materi = () => {
   const [materi, setMateri] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  // tampilkan data api
   useEffect(() => {
     const fetchData = setTimeout(async () => {
       try {
@@ -39,15 +40,10 @@ const Materi = () => {
     <LayoutKedua>
       <div className="min-h-screen flex flex-col items-center bg-primary px-6">
         <div className="max-w-5xl mt-28 w-full md:mt-44">
-          <button
-            onClick={() => window.history.back()}
-            className="rounded-full md:hidden bg-[#2A2A2A] text-white hover:bg-gray-700 w-12 md:w-14 md:h-14 h-12 flex justify-center items-center mb-8 cursor-pointer transition-colors duration-300"
-          >
-            <FaArrowLeft />
-          </button>
+          <ButtonBack back="/beranda" />
           {/* Serch vedio */}
           <Search placeholder="Cari materi pembelajara ..." />
-          
+
           {/* card vedio terpopuler */}
           <section className="mt-8 lg:mt-14 w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

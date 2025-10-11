@@ -12,9 +12,9 @@ const ButtonBack = ({ back }) => {
   return (
     <div
       onClick={handleBack}
-      className="rounded-full bg-[#2A2A2A] hover:bg-gray-700 w-12 h-12 flex justify-center items-center mb-8 cursor-pointer  transition-colors duration-300 md:hidden"
+      className="rounded-full bg-[#2A2A2A] hover:bg-gray-700 w-12 h-12 flex justify-center  items-center mb-8 cursor-pointer  transition-colors duration-300 md:hidden"
     >
-      <FaArrowLeft className="text-xl text-white" />
+      <FaArrowLeft className="text-lg md:text-xl text-white" />
     </div>
   );
 };

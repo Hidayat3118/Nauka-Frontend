@@ -156,7 +156,7 @@ const Navbar = () => {
 
               <SheetContent
                 side="right"
-                className="bg-primary text-white border-none shadow-none"
+                className="bg-primary text-white border-none shadow-none max-h-[90vh] overflow-y-auto"
               >
                 <SheetHeader>
                   <div className="flex flex-col items-center gap-4">
@@ -220,7 +220,7 @@ const Navbar = () => {
                   </div>
 
                   {/* Foto Profil */}
-                  <div className="grid gap-3">
+                  {/* <div className="grid gap-3">
                     <Label htmlFor="profile-photo">Foto Profil</Label>
                     <input
                       id="profile-photo"
@@ -235,7 +235,7 @@ const Navbar = () => {
                       }}
                       className="text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-600 file:text-white hover:file:bg-green-700"
                     />
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Menu Tambahan */}
