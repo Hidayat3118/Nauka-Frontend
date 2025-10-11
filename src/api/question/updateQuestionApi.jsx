@@ -4,18 +4,21 @@ const BASE_URL = "https://nauka.vps-poliban.my.id/api/materials/questions";
 
 export const updateQuestion = async (questionId, formData, token) => {
   try {
-    formData.append("_method", "PUT");
+    // HAPUS ini (tidak perlu)
+    // formData.append("_method", "PUT");
 
-    const res = await axios.post(`${BASE_URL}/${questionId}`, formData, {
+    // TAMBAHKAN query string ?_method=PUT
+    const res = await axios.post(`${BASE_URL}/${questionId}?_method=PUT`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
       },
     });
 
+    console.log("✅ Update sukses:", res.data);
     return res.data;
   } catch (error) {
-    console.error("Gagal update soal:", error.response?.data || error);
+    console.error("❌ Gagal update soal:", error.response?.data || error);
     throw error;
   }
 };

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createQuestion } from "@/api/question/createQuestionApi";
 import { getQuestions } from "@/api/question/getQuestionApi";
 import { deleteQuestion } from "@/api/question/deleteQuestionApi";
+import { updateQuestion } from "@/api/question/updateQuestionApi"; // 🔵 Tambahkan import update
 import {
   Dialog,
   DialogContent,
@@ -32,6 +33,11 @@ const TestingPage = () => {
   const [questions, setQuestions] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
 
+  // 🔵 BAGIAN UPDATE MULAI DARI SINI
+  const [showEditDialog, setShowEditDialog] = useState(false);
+  const [editQuestion, setEditQuestion] = useState(null);
+  // 🔵 BAGIAN UPDATE SAMPAI SINI
+
   const [newQuestion, setNewQuestion] = useState({
     question_text: "",
     question_image: null,
@@ -43,35 +49,44 @@ const TestingPage = () => {
     ],
   });
 
-  //   handle update
+  // 🔵 BAGIAN UPDATE MULAI DARI SINI
+ // 🔵 FIXED handleUpdate agar tidak menambah data baru
+const handleUpdate = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
 
-  const handleUpdate = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const formData = new FormData();
+    // ✅ Laravel butuh "questions[0][...]" meski cuma 1 soal
+    formData.append("questions[0][question_text]", editQuestion.question_text);
 
-      formData.append("question_text", editQuestion.question_text);
-      if (editQuestion.question_image) {
-        formData.append("question_image", editQuestion.question_image);
-      }
-
-      editQuestion.options.forEach((opt, i) => {
-        formData.append(`options[${i}][option_text]`, opt.option_text);
-        if (opt.option_image) {
-          formData.append(`options[${i}][option_image]`, opt.option_image);
-        }
-        formData.append(`options[${i}][is_correct]`, opt.is_correct);
-      });
-
-      await updateQuestion(editQuestion.id, formData, token);
-      alert("✅ Soal berhasil diupdate!");
-      fetchQuestions(selectedMaterial);
-      setShowEditDialog(false);
-    } catch (error) {
-      console.error("❌ Gagal update soal:", error.response?.data || error);
-      alert("Gagal update soal. Cek console untuk detail.");
+    if (editQuestion.question_image instanceof File) {
+      formData.append("questions[0][question_image]", editQuestion.question_image);
     }
-  };
+
+    editQuestion.options.forEach((opt, i) => {
+      formData.append(`questions[0][options][${i}][option_text]`, opt.option_text || "");
+      if (opt.option_image instanceof File) {
+        formData.append(`questions[0][options][${i}][option_image]`, opt.option_image);
+      }
+      formData.append(`questions[0][options][${i}][is_correct]`, opt.is_correct || 0);
+    });
+
+    console.log("🧾 Data yang dikirim:", [...formData.entries()]);
+
+    await updateQuestion(editQuestion.id, formData, token);
+
+    alert("✅ Soal berhasil diupdate!");
+    fetchQuestions(selectedMaterial);
+    setShowEditDialog(false);
+  } catch (error) {
+    console.error("❌ Gagal update soal:", error.response?.data || error);
+    alert("Gagal update soal. Cek console untuk detail.");
+  }
+};
+
+
+
+  // 🔵 BAGIAN UPDATE SAMPAI SINI
 
   // Fetch materials
   const fetchMaterials = async () => {
@@ -82,13 +97,22 @@ const TestingPage = () => {
 
   // Fetch questions
   const fetchQuestions = async (materialId) => {
-    try {
-      const res = await getQuestions(materialId);
-      setQuestions(res.questions || []);
-    } catch (error) {
-      console.error("Gagal memuat soal:", error);
-    }
-  };
+  try {
+    const res = await getQuestions(materialId);
+    // 🔹 Hilangkan opsi duplikat berdasarkan id unik
+    const cleaned = (res.questions || []).map(q => ({
+      ...q,
+      options: q.options.filter(
+        (opt, index, arr) =>
+          index === arr.findIndex(o => o.id === opt.id)
+      ),
+    }));
+    setQuestions(cleaned);
+  } catch (error) {
+    console.error("Gagal memuat soal:", error);
+  }
+};
+
 
   useEffect(() => {
     fetchMaterials();
@@ -265,7 +289,7 @@ const TestingPage = () => {
           </p>
         ) : (
           questions.map((q) => (
-            <Card key={q.id} className="bg-[#2A2A2A]  text-gray-100 shadow-md">
+            <Card key={q.id} className="bg-[#2A2A2A] text-gray-100 shadow-md">
               <CardHeader>
                 <CardTitle className="text-lg text-green-400">
                   {q.question_text}
@@ -307,8 +331,18 @@ const TestingPage = () => {
                   ))}
                 </div>
 
-                {/* Tombol Hapus */}
-                <div className="flex justify-end mt-4">
+                {/* 🔵 Tambah tombol EDIT di sini */}
+                <div className="flex justify-end gap-3 mt-4">
+                  <Button
+                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                    onClick={() => {
+                      setEditQuestion(q);
+                      setShowEditDialog(true);
+                    }}
+                  >
+                    ✏️ Edit
+                  </Button>
+
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <Button
@@ -328,7 +362,7 @@ const TestingPage = () => {
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel className="bg-[#2A2A2A] hover:bg-primary text-gray-100">
+                        <AlertDialogCancel className="bg-[#2A2A2A] text-gray-100">
                           Batal
                         </AlertDialogCancel>
                         <AlertDialogAction
@@ -346,7 +380,106 @@ const TestingPage = () => {
           ))
         )}
       </div>
-      
+
+      {/* 🔵 DIALOG UPDATE */}
+      {editQuestion && (
+        <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
+          <DialogContent className="bg-[#2A2A2A] text-gray-100 max-w-2xl">
+            <DialogHeader>
+              <DialogTitle className="text-xl font-semibold text-blue-400">
+                Edit Soal
+              </DialogTitle>
+            </DialogHeader>
+
+            <div className="space-y-4 mt-2">
+              <Input
+                value={editQuestion.question_text}
+                onChange={(e) =>
+                  setEditQuestion({
+                    ...editQuestion,
+                    question_text: e.target.value,
+                  })
+                }
+                className="bg-[#2A2A2A] border border-gray-600 text-gray-100"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  setEditQuestion({
+                    ...editQuestion,
+                    question_image: e.target.files[0],
+                  })
+                }
+                className="text-sm text-gray-300"
+              />
+
+              <h3 className="font-semibold text-gray-200 mt-3">
+                Opsi Jawaban:
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                {editQuestion.options.map((opt, index) => (
+                  <div
+                    key={index}
+                    className="p-3 border border-gray-600 rounded-md bg-[#2A2A2A] space-y-2"
+                  >
+                    <Input
+                      value={opt.option_text || ""}
+                      onChange={(e) => {
+                        const updated = [...editQuestion.options];
+                        updated[index].option_text = e.target.value;
+                        setEditQuestion({
+                          ...editQuestion,
+                          options: updated,
+                        });
+                      }}
+                      className="bg-[#2A2A2A] border border-gray-500 text-gray-300"
+                    />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const updated = [...editQuestion.options];
+                        updated[index].option_image = e.target.files[0];
+                        setEditQuestion({
+                          ...editQuestion,
+                          options: updated,
+                        });
+                      }}
+                      className="text-sm text-gray-400"
+                    />
+                    <label className="flex items-center gap-2 text-sm">
+                      <input
+                        type="checkbox"
+                        checked={opt.is_correct === 1}
+                        onChange={(e) => {
+                          const updated = editQuestion.options.map((o, i) => ({
+                            ...o,
+                            is_correct:
+                              i === index ? (e.target.checked ? 1 : 0) : 0,
+                          }));
+                          setEditQuestion({
+                            ...editQuestion,
+                            options: updated,
+                          });
+                        }}
+                      />
+                      <span className="text-blue-400">Tandai Benar</span>
+                    </label>
+                  </div>
+                ))}
+              </div>
+
+              <Button
+                onClick={handleUpdate}
+                className="mt-4 bg-blue-600 hover:bg-blue-700 w-full"
+              >
+                Simpan Perubahan
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };
