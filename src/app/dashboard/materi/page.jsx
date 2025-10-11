@@ -48,7 +48,8 @@ export default function MateriPage() {
       if (preview.video) URL.revokeObjectURL(preview.video);
     };
   }, []);
-
+  
+  // tampilan materi
   const fetchMaterials = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -126,7 +127,9 @@ export default function MateriPage() {
 
     const isCreate = !form.id;
     if (isCreate && (!form.image || !form.file))
-      return toast.error("Untuk membuat materi baru: Gambar dan PDF wajib diupload.");
+      return toast.error(
+        "Untuk membuat materi baru: Gambar dan PDF wajib diupload."
+      );
 
     setLoading(true);
 
@@ -162,7 +165,9 @@ export default function MateriPage() {
 
       const saved = res.data.data;
       setMaterials((prev) =>
-        isCreate ? [saved, ...prev] : prev.map((m) => (m.id === saved.id ? saved : m))
+        isCreate
+          ? [saved, ...prev]
+          : prev.map((m) => (m.id === saved.id ? saved : m))
       );
       setOpenDialog(false);
     } catch (err) {
@@ -188,9 +193,12 @@ export default function MateriPage() {
     }
 
     try {
-      await axios.delete(`https://nauka.vps-poliban.my.id/api/materials/${deleteId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.delete(
+        `https://nauka.vps-poliban.my.id/api/materials/${deleteId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setMaterials((prev) => prev.filter((m) => m.id !== deleteId));
       toast.success("Materi berhasil dihapus.");
     } catch (err) {
@@ -220,7 +228,9 @@ export default function MateriPage() {
 
         <CardContent className="space-y-3 mt-3">
           {materials.length === 0 ? (
-            <p className="text-gray-400 text-center py-4 italic">Belum ada materi.</p>
+            <p className="text-gray-400 text-center py-4 italic">
+              Belum ada materi.
+            </p>
           ) : (
             materials.map((m) => (
               <div
@@ -259,7 +269,9 @@ export default function MateriPage() {
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent className="bg-[#2A2A2A] max-h-[90vh] overflow-y-auto md:max-w-4xl max-w-lg w-full border border-gray-700 text-gray-100 rounded-xl shadow-lg">
           <DialogHeader>
-            <DialogTitle>{form.id ? "Edit Materi" : "Tambah Materi"}</DialogTitle>
+            <DialogTitle>
+              {form.id ? "Edit Materi" : "Tambah Materi"}
+            </DialogTitle>
           </DialogHeader>
 
           {/* Grid Form */}
@@ -329,7 +341,9 @@ export default function MateriPage() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="text-sm text-gray-400 mb-1 block">Deskripsi</label>
+              <label className="text-sm text-gray-400 mb-1 block">
+                Deskripsi
+              </label>
               <Textarea
                 name="description"
                 value={form.description}

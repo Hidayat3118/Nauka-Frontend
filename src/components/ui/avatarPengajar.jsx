@@ -1,18 +1,20 @@
 import Image from "next/image";
 
-const Avatar = ({ name }) => {
+const AvatarPengajar = ({ name, image }) => {
   return (
-    <div className="space-y-4 lg:text-xl text-base ">
-      <Image
-        src="/people/people.jpeg"
-        alt="people"
-        width={100}
-        height={200}
-        className="object-cover overflow-hidden rounded-full hover:-translate-2 duration-300 min-h-28 min-w-28 lg:min-h-44 lg:min-w-44 w-full"
-      />
-      <p className="text-white text-center font-semibold ">{name}</p>
+    <div className="flex flex-col items-center space-y-3 text-center">
+      <div className="w-28 h-28 lg:w-44 lg:h-44 rounded-full border border-green-500 overflow-hidden">
+        <Image
+          src={image}
+          alt="pengajar"
+          width={176} // bebas, hanya referensi ukuran
+          height={176}
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+      <p className="text-white font-semibold text-sm lg:text-base">{name}</p>
     </div>
   );
 };
 
-export default Avatar;
+export default AvatarPengajar;
