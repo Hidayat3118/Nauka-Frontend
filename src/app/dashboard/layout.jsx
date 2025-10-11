@@ -93,8 +93,8 @@ const DashboardLayout = ({ children }) => {
                   },
                   {
                     icon: <FaUsers />,
-                    label: "Pengguna",
-                    href: "/dashboard/pengguna",
+                    label: "question",
+                    href: "/dashboard/question",
                   },
                 ].map((item, i) => (
                   <Link key={i} href={item.href} className="w-full">
