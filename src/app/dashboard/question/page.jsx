@@ -59,16 +59,33 @@ const handleUpdate = async () => {
     // ✅ Laravel butuh "questions[0][...]" meski cuma 1 soal
     formData.append("questions[0][question_text]", editQuestion.question_text);
 
+    // Jika ada gambar soal, tambahkan
     if (editQuestion.question_image instanceof File) {
       formData.append("questions[0][question_image]", editQuestion.question_image);
     }
 
     editQuestion.options.forEach((opt, i) => {
-      formData.append(`questions[0][options][${i}][option_text]`, opt.option_text || "");
-      if (opt.option_image instanceof File) {
-        formData.append(`questions[0][options][${i}][option_image]`, opt.option_image);
+      // Kirim id jika ada (penting agar backend UPDATE, bukan CREATE)
+      if (opt.id) {
+        formData.append(`questions[0][options][${i}][id]`, String(opt.id));
       }
-      formData.append(`questions[0][options][${i}][is_correct]`, opt.is_correct || 0);
+
+      formData.append(
+        `questions[0][options][${i}][option_text]`,
+        opt.option_text || ""
+      );
+
+      if (opt.option_image instanceof File) {
+        formData.append(
+          `questions[0][options][${i}][option_image]`,
+          opt.option_image
+        );
+      }
+
+      formData.append(
+        `questions[0][options][${i}][is_correct]`,
+        opt.is_correct || 0
+      );
     });
 
     console.log("🧾 Data yang dikirim:", [...formData.entries()]);
@@ -83,6 +100,7 @@ const handleUpdate = async () => {
     alert("Gagal update soal. Cek console untuk detail.");
   }
 };
+
 
 
 

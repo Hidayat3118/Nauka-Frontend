@@ -22,17 +22,30 @@ export default function Login() {
 
     try {
       const data = await login(username, password);
+
       toast.success("Selamat Login Berhasil");
       console.log("Response:", data);
+
+      // Simpan token dan role ke localStorage
       if (data.token) localStorage.setItem("token", data.token);
-      route.push("/beranda");
+      if (data.user && data.user.role)
+        localStorage.setItem("role", data.user.role);
+
+      // Arahkan halaman sesuai role
+      if (data.user.role === "pengajar") {
+        route.push("/dashboard");
+      } else if (data.user.role === "murid") {
+        route.push("/beranda");
+      } else {
+        route.push("/"); // fallback jika role tidak dikenali
+      }
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.message || "Login gagal");
       } else if (error.request) {
         setMessage("Tidak ada respons dari server");
       } else {
-        setMessage("username dan sandi tidak sesuai");
+        setMessage("Username dan sandi tidak sesuai");
       }
     }
   };

@@ -80,7 +80,7 @@ const DashboardLayout = ({ children }) => {
 
               <nav className="flex flex-col gap-2 p-4 text-sm">
                 {[
-                  { icon: <FaHome />, label: "Beranda", href: "/dashboard" },
+                  { icon: <FaHome />, label: "Dashboard", href: "/dashboard" },
                   {
                     icon: <FaBookOpen />,
                     label: "Materi",
@@ -93,8 +93,13 @@ const DashboardLayout = ({ children }) => {
                   },
                   {
                     icon: <FaUsers />,
-                    label: "question",
+                    label: "Question",
                     href: "/dashboard/question",
+                  },
+                  {
+                    icon: <FaHome />,
+                    label: "Beranda",
+                    href: "/beranda",
                   },
                 ].map((item, i) => (
                   <Link key={i} href={item.href} className="w-full">
