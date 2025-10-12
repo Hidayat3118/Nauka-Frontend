@@ -15,7 +15,7 @@ const CardLogaritma = ({
  
   return (
     <div className="bg-[#2A2A2A] rounded-xl hover:-translate-1 cursor-pointer duration-300 shrink-0 lg:min-w-0 ">
-      <div className="rounded-xl p-3 ">
+      <div className="rounded-xl p-3">
         <Image
           onClick={() => router.push(`/materi/${materialId}`)}
           src={image}
@@ -39,7 +39,7 @@ const CardLogaritma = ({
             </div>
           </div>
 
-          <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+          <p className="text-slate-300 text-sm leading-relaxed line-clamp-2 h-10">
             {description}
           </p>
 

@@ -22,9 +22,9 @@ export default function OnboardingPage() {
             setStep(2);
           }}
           // function kembali
-          kembali={() => {
-            setStep(1);
-          }}
+          // kembali={() => {
+          //   setStep(1);
+          // }}
         />
       )}
 

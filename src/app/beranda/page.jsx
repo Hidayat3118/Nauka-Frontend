@@ -9,11 +9,20 @@ import { getMaterialNew } from "@/api/materi/materialNewApi";
 import { useState, useEffect } from "react";
 import LoadingSpinner from "@/components/ui/loading";
 import { getAllPengajar } from "../../api/user/getAllPengajarApi";
+// import { videosMostLikeApi } from "@/api/videosMostLikeApi";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Beranda = () => {
   const [materi, setMateri] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pengajar, setPengajar] = useState([]);
+  const [videos, setVideos] = useState([]);
 
   // Ambil data materi
   useEffect(() => {
@@ -29,6 +38,20 @@ const Beranda = () => {
     }, 500);
     return () => clearTimeout(fetchData);
   }, []);
+
+  // ambil data videos most like api
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await videosMostLikeApi();
+  //       setVideos(data);
+  //     } catch (error) {
+  //       console.error("gagal di nangkap api ", error);
+  //     }
+  //   };
+  //   fetchData
+  // },[]);
 
   // Ambil data pengajar
   useEffect(() => {
@@ -71,11 +94,12 @@ const Beranda = () => {
 
         {/* Section Pengajar */}
         <section className="mt-10 max-w-5xl w-full">
-          <div className="flex justify-between">
-            <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
+          {/* Header Section */}
+          <div className="flex justify-between items-center mb-10">
+            <h1 className="text-lg lg:text-2xl text-white font-bold">
               Pengajar
             </h1>
-            <div className="text-lg hover:text-green-400 text-white mb-10 font-semibold hover:-translate-1 duration-300 flex items-center justify-center gap-2">
+            <div className="flex items-center gap-2 text-white text-sm lg:text-lg font-semibold hover:text-green-400 transition duration-300">
               <Link href="/" className="text-sm">
                 Lihat Lainnya
               </Link>
@@ -83,58 +107,98 @@ const Beranda = () => {
             </div>
           </div>
 
-          <div className="flex overflow-x-auto scrollbar-custom gap-6 pb-6">
-            {pengajar.map((data) => (
-              <AvatarPengajar
-                key={data.id}
-                name={data.name}
-                image={
-                  data.photo_profile && data.photo_profile.trim() !== ""
-                    ? data.photo_profile
-                    : "/study.png"
-                }
-              />
-            ))}
+          {/* Carousel Section */}
+          <div className="pb-6">
+            <Carousel
+              className="w-full"
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {pengajar.map((data) => (
+                  <CarouselItem
+                    key={data.id}
+                    className="basis-1/2 sm:basis-1/3 lg:basis-1/5"
+                  >
+                    <div className="flex justify-center p-2">
+                      <AvatarPengajar
+                        name={data.name}
+                        image={
+                          data.photo_profile && data.photo_profile.trim() !== ""
+                            ? data.photo_profile
+                            : "/study.png"
+                        }
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              {/* Tombol navigasi */}
+              <CarouselPrevious className="left-2 sm:left-5" />
+              <CarouselNext className="right-2 sm:right-5" />
+            </Carousel>
           </div>
         </section>
 
         {/* Section Materi Terbaru */}
         <section className="mt-8 lg:mt-24 max-w-5xl w-full">
-          <div className="flex justify-between">
-            <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
+          {/* Header Section */}
+          <div className="flex justify-between items-center mb-10">
+            <h1 className="text-lg lg:text-2xl text-white font-bold">
               Materi Terbaru
             </h1>
-            <div className="text-lg hover:text-green-400 text-white mb-10 font-semibold hover:-translate-1 duration-300 flex items-center justify-center gap-2">
-              <Link href="/materi" className="text-sm">
-                Lihat Lainnya
-              </Link>
+            <div className="flex items-center gap-2 text-white text-sm lg:text-lg font-semibold hover:text-green-400 transition duration-300">
+              <Link href="/materi">Lihat Lainnya</Link>
               <FaLongArrowAltRight className="text-base" />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 pb-6">
-            {materi.map((data) => (
-              <CardLogaritma
-                key={data.id}
-                title={data.title}
-                description={data.description}
-                // ✅ Hindari gambar kosong
-                image={
-                  data.image && data.image.trim() !== ""
-                    ? data.image
-                    : "/default-material.png"
-                }
-                user={data.user}
-                materialId={data.id}
-                initialLikes={data.likes}
-              />
-            ))}
+          {/* Carousel Section */}
+          <div className="pb-6">
+            <Carousel
+              className="w-full"
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {materi.map((data) => (
+                  <CarouselItem
+                    key={data.id}
+                    className="basis-full sm:basis-1/2 lg:basis-1/3"
+                  >
+                    <div className="p-2">
+                      <CardLogaritma
+                        title={data.title}
+                        description={data.description}
+                        image={
+                          data.image && data.image.trim() !== ""
+                            ? data.image
+                            : "/default-material.png"
+                        }
+                        user={data.user}
+                        materialId={data.id}
+                        initialLikes={data.likes}
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              {/* Tombol navigasi tidak terlalu di ujung */}
+              <CarouselPrevious className="left-2 sm:left-5" />
+              <CarouselNext className="right-2 sm:right-5" />
+            </Carousel>
           </div>
         </section>
 
         {/* Section Video Terpopuler */}
         <section className="mt-8 lg:mt-24 max-w-5xl w-full">
-          <div className="flex justify-between">
+          {/* <div className="flex justify-between">
             <h1 className="text-lg lg:text-2xl text-white font-bold mb-10">
               Video Terpopuler
             </h1>
@@ -144,9 +208,12 @@ const Beranda = () => {
               </Link>
               <FaLongArrowAltRight className="text-base" />
             </div>
-          </div>
+          </div> */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 pb-6">
-            {/* Tambahkan konten video di sini nanti */}
+            {/* nunggu api nya di perbaiki */}
+            {/* {videos.map((data) => (
+              <CardLogaritma title={data.title} description={data.description} />
+            ))} */}
           </div>
         </section>
       </div>

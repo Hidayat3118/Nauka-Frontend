@@ -15,7 +15,7 @@ const Step1Role = ({ onNext }) => {
   return (
     <div className="max-w-lg w-full mx-auto p-6 md:bg-[#2A2A2A]  text-white rounded-xl shadow-lg mt-6">
       <div
-        className="rounded-full  bg-[#2A2A2A] w-12 h-12 flex justify-center items-center mb-8 cursor-pointer"
+        className="rounded-full md:bg-primary bg-[#2A2A2A] w-12 h-12 flex justify-center items-center mb-8 cursor-pointer"
         onClick={kembali}
       >
         <FaArrowLeft className="text-xl" />
@@ -48,7 +48,7 @@ const Step1Role = ({ onNext }) => {
         onClick={() => onNext(role)}
         disabled={!role}
         className="w-full font-bold mt-6"
-        variant={role ? "default" :  'destructive'}
+        variant={role ? "default" : "destructive"}
         size="lg"
       >
         Lanjutkan

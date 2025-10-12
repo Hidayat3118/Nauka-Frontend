@@ -11,20 +11,20 @@ const Step2Upload = ({ onNext, kembali }) => {
     setFile(e.target.files[0]);
   };
   return (
-    <div className="max-w-lg w-full mx-auto p-6 lg:bg-gray-800 text-white rounded-xl shadow-lg mt-6">
-      <div
-        className="rounded-full md:bg-gray-700 bg-gray-800 w-12 h-12 flex justify-center items-center mb-8 cursor-pointer"
+    <div className="max-w-lg w-full mx-auto p-6 lg:bg-[#2A2A2A] text-white rounded-xl shadow-lg mt-6">
+      {/* <div
+        className="rounded-full md:bg-primary bg-[#2A2A2A] w-12 h-12 flex justify-center items-center mb-8 cursor-pointer"
         onClick={kembali}
       >
         <FaArrowLeft className="text-xl" />
-      </div>
+      </div> */}
       <h2 className="text-2xl font-bold mb-2 mt-32 md:mt-0">Upload Validasi</h2>
       <p className="text-gray-400 mb-6">
         Kami memerlukan bukti untuk memvalidasi anda seorang Murid
       </p>
 
       <label className="border-2 border-dashed border-green-600 rounded-lg p-6 text-center cursor-pointer justify-center items-center flex flex-col">
-        <div className="rounded-full bg-gray-700 h-16 w-16 flex justify-center items-center mb-4">
+        <div className="rounded-full bg-primary h-16 w-16 flex justify-center items-center mb-4">
           <IoCloudUploadOutline className="text-4xl" />
         </div>
         <p className="text-gray-400">Upload bukti disini yang </p>

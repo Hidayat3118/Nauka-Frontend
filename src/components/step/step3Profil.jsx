@@ -10,8 +10,8 @@ const Step3Profile = ({ onNext, kembali }) => {
  
   };
   return (
-    <div className="max-w-lg w-full mx-auto p-6 md:bg-gray-800 text-white rounded-xl shadow-lg mt-6">
-      <div className="rounded-full md:bg-gray-700 bg-gray-800 w-12 h-12 flex justify-center items-center mb-8 cursor-pointer" onClick={kembali}>
+    <div className="max-w-lg w-full mx-auto p-6  md:bg-[#2A2A2A] text-white rounded-xl shadow-lg mt-6">
+      <div className="rounded-full md:bg-primary bg-[#2A2A2A] w-12 h-12 flex justify-center items-center mb-8 cursor-pointer" onClick={kembali}>
         <FaArrowLeft className="text-xl" />
       </div>
       <h2 className="text-2xl font-bold mb-2">Foto Profil</h2>
@@ -21,7 +21,7 @@ const Step3Profile = ({ onNext, kembali }) => {
         <div className="grid grid-cols-3 gap-4 lg:gap-8 justify-center items-center">
           {/* input gambar */}
           <label htmlFor="upload" className="cursor-pointer">
-            <div className="rounded-full bg-gray-700">
+            <div className="rounded-full bg-primary">
               <Avatar className="w-24 h-24 lg:w-28 lg:h-28 ">
                 <AvatarImage src="/kamera.png" className="p-4 lg:p-6" />
                 <AvatarFallback>CN</AvatarFallback>
