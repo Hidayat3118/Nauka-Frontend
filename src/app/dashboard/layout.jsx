@@ -10,8 +10,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { logout } from "@/api/logoutApi";
+import toast from "react-hot-toast";
 import {
   FaBars,
   FaBookOpen,
@@ -26,6 +29,7 @@ import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { getUserProfile } from "@/api/user/profilApi";
 
 const DashboardLayout = ({ children }) => {
+  const router = useRouter();
   const [profile, setProfile] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [token, setToken] = useState(null);
@@ -47,6 +51,19 @@ const DashboardLayout = ({ children }) => {
       fetchProfile();
     }
   }, []);
+
+  // handle logout
+
+  const handleLogout = async () => {
+    try {
+      const response = await logout();
+      localStorage.removeItem("token");
+      if (response) toast.success("Logout berhasil");
+      router.push("/");
+    } catch (error) {
+      toast.error("Terjadi kesalahan saat logout");
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#1C1C1C] to-[#242424] text-gray-100 font-inter">
@@ -115,6 +132,7 @@ const DashboardLayout = ({ children }) => {
                 <Separator className="my-3 bg-gray-700" />
 
                 <Button
+                  onClick={handleLogout}
                   variant="destructive"
                   className="justify-start gap-3 bg-red-600 hover:bg-red-700 text-white rounded-lg"
                 >
@@ -140,13 +158,15 @@ const DashboardLayout = ({ children }) => {
             <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full" />
           </Button>
 
-         
-
           {/* Avatar */}
           <div className="flex items-center ">
             <Avatar className="w-12 h-12 md:w-12 md:h-12 border border-green-500 cursor-pointer">
               <AvatarImage
-                src={previewImage || profile?.photo_profile || "/default-avatar.png"}
+                src={
+                  previewImage ||
+                  profile?.photo_profile ||
+                  "/default-avatar.png"
+                }
                 alt={profile?.name || "User"}
               />
               <AvatarFallback>{profile?.name?.charAt(0) || "?"}</AvatarFallback>
