@@ -32,6 +32,7 @@ const CardVedio = ({ title, description, user, vedioId }) => {
             <h2 className="text-white font-semibold text-lg line-clamp-1 lg:text-xl">
               {title}
             </h2>
+            {/* like buttn */}
             <div className="flex items-center gap-1 text-slate-300 hover:text-blue-400 transition-colors duration-300 cursor-pointer">
               <AiOutlineLike size={22} />
               <span className="text-sm">{likeCount}</span>

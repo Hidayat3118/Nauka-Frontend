@@ -64,7 +64,7 @@ const Beranda = () => {
           />
           <CardWarna
             name="Soal Tryout"
-            href="/"
+            href="/quiz"
             className="bg-purple-500 hover:bg-purple-600 rounded-xl p-6 md:p-10 text-center text-white font-semibold text-xl cursor-pointer hover:-translate-y-2 duration-300 col-span-2 md:col-span-1"
           />
         </section>
