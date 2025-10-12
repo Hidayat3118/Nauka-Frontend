@@ -13,20 +13,13 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-screen w-full flex lg:items-center justify-center bg-primary">
-      {step === 1 && (
-        <Step1Role
-          onNext={(selectedRole) => {
-            setRole(selectedRole);
-            setStep(2);
-          }}
-        />
-      )}
+      
 
-      {step === 2 && (
+      {step === 1 && (
         <Step2Upload
           onNext={(uploadedFile) => {
             setFile(uploadedFile);
-            setStep(3);
+            setStep(2);
           }}
           // function kembali
           kembali={() => {
@@ -35,14 +28,14 @@ export default function OnboardingPage() {
         />
       )}
 
-      {step === 3 && (
+      {step === 2 && (
         <Step3Profile
           onNext={() => {
             alert("selamat sudah berhasil");
           }}
           // kembali
           kembali={() => {
-            setStep(2);
+            setStep(1);
           }}
         />
       )}

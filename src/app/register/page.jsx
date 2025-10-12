@@ -74,7 +74,7 @@ export default function Register() {
 
       if (response?.token) {
         toast.success("Registrasi berhasil!");
-        router.push("/onbording");
+        router.push("/beranda");
       } else {
         toast.error(
           response?.message || "Registrasi gagal. Silakan coba lagi."
@@ -142,7 +142,7 @@ export default function Register() {
             <SelectContent className="bg-[#2A2A2A] text-gray-400">
               <SelectGroup>
                 <SelectLabel>Role</SelectLabel>
-                <SelectItem value="murid">Murid</SelectItem>
+                <SelectItem value="pelajar">Murid</SelectItem>
                 <SelectItem value="pengajar">Pengajar</SelectItem>
               </SelectGroup>
             </SelectContent>
