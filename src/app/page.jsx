@@ -31,7 +31,7 @@ export default function Login() {
       if (data.user && data.user.role)
         localStorage.setItem("role", data.user.role);
 
-      // Arahkan halaman sesuai role
+      // sudah di perbaiki
       if (data.user.role === "pengajar") {
         route.push("/dashboard");
       } else if (data.user.role === "pelajar") {
