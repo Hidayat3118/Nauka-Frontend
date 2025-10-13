@@ -34,7 +34,7 @@ export default function Login() {
       // Arahkan halaman sesuai role
       if (data.user.role === "pengajar") {
         route.push("/dashboard");
-      } else if (data.user.role === "murid") {
+      } else if (data.user.role === "pelajar") {
         route.push("/beranda");
       } else {
         route.push("/"); // fallback jika role tidak dikenali
