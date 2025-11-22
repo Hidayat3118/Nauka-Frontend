@@ -1,6 +1,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* === Autofill Fix untuk Dark Mode === */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  @apply bg-[#2a2a2a] text-gray-200;
+  -webkit-box-shadow: 0 0 0px 1000px #2a2a2a inset !important;
+  -webkit-text-fill-color: #e5e7eb !important;
+  caret-color: #e5e7eb;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 /* Scrollbar Custom */
 .scrollbar-custom::-webkit-scrollbar {
   height: 6px; /* tinggi scrollbar horizontal */
@@ -11,28 +22,27 @@
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background: #253D2C;  /* warna hijau (Tailwind green-400) */
+  background: #253d2c; /* warna hijau (Tailwind green-400) */
   border-radius: 9999px; /* bikin bulat */
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-  background: #2E6F40; /* warna hijau lebih gelap saat hover */
+  background: #2e6f40; /* warna hijau lebih gelap saat hover */
 }
 
 /* Firefox */
 .scrollbar-custom {
-  scrollbar-color: #253D2C transparent; 
+  scrollbar-color: #253d2c transparent;
   scrollbar-width: thin;
 }
 
-
 /* warna */
 
-.primary{
-  background:#262626;
+.primary {
+  background: #262626;
 }
-.secondary{
-  background:#2A2A2A;
+.secondary {
+  background: #2a2a2a;
 }
 
 @custom-variant dark (&:is(.dark *));

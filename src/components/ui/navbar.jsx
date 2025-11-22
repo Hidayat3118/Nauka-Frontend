@@ -112,7 +112,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 lg:top-4 left-0 right-0 z-50">
-      <div className="max-w-4xl mx-auto px-6 flex justify-between items-center md:border-2 md:border-[#2A2A2A] py-6 lg:rounded-full shadow-xl bg-primary">
+      <div className="max-w-4xl mx-auto px-6 flex justify-between items-center md:border md:border-neutral-700  py-6 lg:rounded-full shadow-xl bg-neutral-800">
         {/* Logo */}
         <div>
           <h1 className="text-xl lg:text-2xl font-bold text-center">

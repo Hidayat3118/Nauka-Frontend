@@ -65,7 +65,7 @@ export default function Register() {
       return;
     }
 
-     console.log("Data yang dikirim ke API:", formData);
+    console.log("Data yang dikirim ke API:", formData);
 
     try {
       const response = await register(formData);
