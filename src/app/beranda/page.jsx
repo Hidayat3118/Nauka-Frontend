@@ -120,7 +120,7 @@ const Beranda = () => {
                 {pengajar.map((data) => (
                   <CarouselItem
                     key={data.id}
-                    className="basis-1/2 sm:basis-1/3 lg:basis-1/5"
+                    className=""
                   >
                     <div className="flex justify-center p-2">
                       <AvatarPengajar

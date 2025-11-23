@@ -12,9 +12,9 @@ const CardLogaritma = ({
 }) => {
   const router = useRouter();
   // 🔹 Gambar utama: pastikan tidak kosong
- 
+
   return (
-    <div className="bg-[#2A2A2A] rounded-xl hover:-translate-1 cursor-pointer duration-300 shrink-0 lg:min-w-0 ">
+    <div className="bg-[#2A2A2A] rounded-xl  cursor-pointer duration-300 shrink-0 lg:min-w-0 ">
       <div className="rounded-xl p-3">
         <Image
           onClick={() => router.push(`/materi/${materialId}`)}
@@ -30,20 +30,20 @@ const CardLogaritma = ({
             <h2 className="text-white font-semibold text-lg lg:text-xl line-clamp-1">
               {title}
             </h2>
-            <div className="pl-4">
-              <ButtonLike className=""
-              materialId={materialId}
-              initialLikes={initialLikes}
-              initiallyLiked={false}
-            />
+            <div className="pl-4 cursor-pointer ">
+              <ButtonLike
+                className=" "
+                materialId={materialId}
+                initialLikes={initialLikes}
+                initiallyLiked={false}
+              />
             </div>
           </div>
 
           <p className="text-slate-300 text-sm leading-relaxed line-clamp-2 h-10">
             {description}
           </p>
-
-          <div className="flex items-center gap-3 pt-3 border-t border-slate-700">
+          <div className="flex items-center gap-3 pt-3 border-t  border-slate-700">
             <Avatar>
               <AvatarImage src={user?.photo_profile} />
               <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>

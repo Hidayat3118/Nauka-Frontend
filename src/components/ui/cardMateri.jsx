@@ -12,7 +12,7 @@ const CardMateri = ({
 }) => {
   const router = useRouter();
   return (
-    <div className="bg-[#2A2A2A] rounded-xl hover:-translate-y-2 duration-300 shrink-0 lg:min-w-0 cursor-pointer">
+    <div className="bg-[#2A2A2A] rounded-xl  shrink-0 lg:min-w-0 cursor-pointer">
       <div className="p-3 flex flex-row items-center gap-3 md:flex-col md:items-start">
         {/* Gambar */}
         <Image

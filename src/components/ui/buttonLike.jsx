@@ -50,7 +50,7 @@ export default function ButtonLike({ materialId, initialLikes, initiallyLiked })
   return (
     <button
       onClick={handleLike}
-      className="flex items-center gap-1 transition-transform hover:scale-105 text-white"
+      className="flex items-center gap-1 transition-transform hover:scale-105 text-white cursor-pointer"
     >
       {liked ? (
         <AiFillLike className="text-blue-600" size={22} />
