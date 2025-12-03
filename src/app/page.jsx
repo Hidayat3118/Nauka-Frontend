@@ -105,7 +105,7 @@ export default function Login() {
 
         {/* Lupa password */}
         <p className="text-sm lg:text-base text-gray-400 mt-3 text-center cursor-pointer hover:underline hover:text-green-400">
-          Lupa kata sandi?
+          Lupa kata sandi.?
         </p>
         {/* Daftar */}
         <p className="text-sm lg:text-base text-gray-400 mt-6 text-center">
